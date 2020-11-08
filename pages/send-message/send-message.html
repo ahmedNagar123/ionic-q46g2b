@@ -1,0 +1,24 @@
+<!--
+  Generated template for the SendMessagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header navBarTitle="messages.send" showNavLogo='true'></header>
+
+<ion-content class="two-header-content">
+  <ion-grid class="height-100 margin-top-50" padding>
+    <ion-row class="height-100">
+      <ion-col text-center>
+        <ion-item margin-bottom class="input-item">
+          <ion-input type="text" [(ngModel)]="title" placeholder="{{'messages.title' | translate}}"></ion-input>
+        </ion-item>
+        <ion-item margin-bottom class="input-item">
+          <ion-textarea rows="6" cols="20" [(ngModel)]="message" placeholder="{{'messages.message' | translate}}"></ion-textarea>
+        </ion-item>
+        <button ion-button block text-capitalize color="dark" mode="md" margin-top class="margin-top-20" (click)="send()">{{'general.send' | translate}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

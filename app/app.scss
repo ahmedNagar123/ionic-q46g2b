@@ -1,0 +1,82 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+ion-menu {
+    .menu-inner {
+        box-shadow: none !important;
+        background: transparent !important;
+        // width: 100%;
+    }
+    .content {
+        background-color: black;
+        // opacity: .8;
+    }
+    .item, .activated {
+        background: transparent !important;
+        color: color($colors, light, base);
+        .item-inner {
+            background: none !important;
+            padding: 0 !important;
+        }
+        .icon
+        {
+            margin: 5px;
+        }
+    }
+    .logo-container
+    {
+        background: color($colors, primary);
+        width: 20%;
+        margin: 5% 40%;
+        border-radius: 50%;
+        .icon
+        {
+            font-size: xx-large;
+        }
+    }
+    // for center border
+    // .item:before {
+    //     content : "";
+    //     position: absolute;
+    //     left    : 15%;
+    //     bottom  : 0;
+    //     height  : 1px;
+    //     width   : 70%; 
+    //     border-bottom:1px solid color($colors, secondary, base);
+    // }
+}
+
+.content:not(.no-margin-content):not(.two-header-content):not(.three-header-content){
+    margin-top: 44px;
+}
+
+.two-header-content{
+    margin-top: 90px;
+}
+
+.three-header-content{
+    margin-top: 132px;
+}
+
+// for triangle shape
+// .menu-content:after {
+//   content: ' ';
+//   border-top: 100vh solid #1b1b1b;
+//   border-left: 100vw solid transparent;
+//   width: 0;
+//   position: absolute;
+// }

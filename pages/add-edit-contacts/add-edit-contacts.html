@@ -1,0 +1,42 @@
+<!--
+  Generated template for the AddEditContactsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <ion-item margin-bottom class="input-item">
+    <ion-input type="text" [(ngModel)]="contactName" placeholder="{{'suppliers.name' | translate}}"></ion-input>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-input type="email" [(ngModel)]="contactMail" placeholder="{{'suppliers.email' | translate}}"></ion-input>
+  </ion-item>
+  <ion-item class="ddl" no-padding margin-bottom>
+    <ion-select [(ngModel)]="selectedTitle" color="primary" placeholder="{{'customers.cont-title' | translate}}">
+      <ion-option *ngFor="let item of titles; let i = index" [value]="item">{{item.value | translate}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-input type="tel" [(ngModel)]="contactPhone" placeholder="{{'customers.cont-phone' | translate}}"></ion-input>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-input type="text" [(ngModel)]="contactPosition" placeholder="{{'customers.cont-position' | translate}}"></ion-input>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-checkbox [(ngModel)]="isContact"></ion-checkbox>
+    <ion-label color="secondary">{{'customers.is-contact' | translate}}</ion-label>
+  </ion-item>
+  <ion-item margin-bottom class="input-item upload">
+    <ion-input type="file" id="fileInput" #fileInput></ion-input>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-input type="text" class="attach-mask" [(ngModel)]="attachName" placeholder="{{'products.attach' | translate}}"></ion-input>
+    <ion-icon name="md-cloud-upload" item-right color="secondary"></ion-icon>
+  </ion-item>
+  <ion-item margin-bottom class="input-item">
+    <ion-textarea type="text" [(ngModel)]="contactNote" placeholder="{{'customers.notes' | translate}}" rows="5"></ion-textarea>
+  </ion-item>
+  <button ion-button block round text-capitalize color="dark" mode="md" margin-bottom (click)="saveContact()">{{'general.save' | translate}}</button>
+  <button ion-button block outline round text-capitalize color="dark" mode="md" margin-bottom (click)="clearContact()" *ngIf="mode == 'add'">{{'general.clear' | translate}}</button>
+  <button ion-button block outline round text-capitalize color="dark" mode="md" margin-bottom (click)="cancel()">{{'general.cancel' | translate}}</button>
+</ion-content>

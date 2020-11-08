@@ -1,0 +1,133 @@
+<!--
+  Generated template for the AddEditShipmentsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showToolLogo="true" [navBarTitle]="(mode == 'add')?'orders.new':title"></header>
+
+<ion-content class="two-header-content">
+  <div *ngIf="mode == 'edit'" padding-top>
+    <ion-segment [(ngModel)]="selectedOption" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="details" text-uppercase>
+        {{'products.details' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="attachments" text-uppercase>
+        {{'products.attach' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="selectedOption">
+    <div text-center *ngSwitchCase="'details'" padding>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="shipmentTitle" placeholder="{{'shipments.ship-title' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item disable">
+        <ion-input type="text" [(ngModel)]="orderNo" placeholder="{{'shipments.orderNo' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-label color="secondary">{{'suppliers.list' | translate}}</ion-label>
+        <ionic-selectable item-content [(ngModel)]="selectedSupplier" [items]="suppliers" itemValueField="id" itemTextField="name"
+          [canSearch]="true" [isMultiple]="false">
+        </ionic-selectable>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM DD YYYY" placeholder="{{'shipments.ship-date' | translate}}"
+          [(ngModel)]="shipmentDate"></ion-datetime>
+        <ion-icon name="ios-calendar-outline" item-right color="secondary"></ion-icon>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM DD YYYY" placeholder="{{'shipments.dep-date' | translate}}"
+          [(ngModel)]="departureDate"></ion-datetime>
+        <ion-icon name="ios-calendar-outline" item-right color="secondary"></ion-icon>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="invoiceNumber" placeholder="{{'shipments.inv-num' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-datetime displayFormat="MMM/DD/YYYY" pickerFormat="MMM DD YYYY" placeholder="{{'shipments.inv-date' | translate}}"
+          [(ngModel)]="invoiceDate"></ion-datetime>
+        <ion-icon name="ios-calendar-outline" item-right color="secondary"></ion-icon>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-select [(ngModel)]="selectedCurrency" color="primary" placeholder="{{'quotations.currency' | translate}}">
+          <ion-option *ngFor="let item of currenciesArr; let i = index" [value]="item">{{item.value | translate}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="number" [(ngModel)]="totalAmount" placeholder="{{'shipments.total-amount' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="totalMeas" placeholder="{{'shipments.total-meas' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="totalGW" placeholder="{{'shipments.total-GW' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-select [(ngModel)]="selectedPortShipment" color="primary" placeholder="{{'shipments.port-shipment' | translate}}">
+          <ion-option *ngFor="let item of destinationsArr; let i = index" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-select [(ngModel)]="selectedDestination" color="primary" placeholder="{{'shipments.port-destination' | translate}}">
+          <ion-option *ngFor="let item of destinationsArr; let i = index" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-label color="secondary">{{'shipments.freight' | translate}}</ion-label>
+        <ionic-selectable item-content [(ngModel)]="selectedFreight" [items]="freightTerms" itemValueField="id" itemTextField="name"
+          [canSearch]="true" [isMultiple]="false">
+        </ionic-selectable>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-select [(ngModel)]="selectedCarrier" color="primary" placeholder="{{'shipments.carrier' | translate}}">
+          <ion-option *ngFor="let item of carriers; let i = index" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="packing" placeholder="{{'quotations.packing' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="lcNumber" placeholder="{{'shipments.LCNumber' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="blNumber" placeholder="{{'shipments.BLNumber' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="ETA" placeholder="{{'shipments.ETA' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="AWB" placeholder="{{'shipments.AWB' | translate}}"></ion-input>
+      </ion-item>
+
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-top (click)="save()">{{'general.save' | translate}}</button>
+      <button ion-button block outline round text-capitalize color="dark" mode="md" margin-top (click)="clear()" *ngIf="mode == 'add'">{{'general.clear' | translate}}</button>
+    </div>
+    <div text-center *ngSwitchCase="'attachments'" padding id="attach-container">
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="attachTitle" placeholder="{{'products.att-title' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item upload">
+        <ion-input type="file" id="fileInput" #fileInput></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" class="attach-mask" [(ngModel)]="attachName" placeholder="{{'products.attach' | translate}}"></ion-input>
+        <ion-icon name="md-cloud-upload" item-right color="secondary"></ion-icon>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-textarea type="text" [(ngModel)]="attachNotes" placeholder="{{'products.notes' | translate}}" rows="5"></ion-textarea>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let item of attachmentsArr; let i = index" class="items-class">
+          <h2>{{item.name}}</h2>
+          <p> {{item.title}}</p>
+          <p> {{item.notes}}</p>
+          <ion-note item-end>
+            <ion-icon name="md-trash" color="danger" col-5 (click)="deleteFile(i)"></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-top (click)="saveAttach()">{{'general.save' | translate}}</button>
+    </div>
+  </div>
+</ion-content>

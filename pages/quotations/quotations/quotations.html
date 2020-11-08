@@ -1,0 +1,34 @@
+<!--
+  Generated template for the QuotationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header (searchBarOnInputChange)="onInput($event)" showSearchBar="true" showNavLogo="true" navBarTitle="quotations.list"></header>
+
+<ion-content padding class="three-header-content">
+  <ion-list *ngIf="quotations.length > 0" no-lines>
+    <ion-item *ngFor="let quotation of quotations; let i = index" class="items-class">
+      <h2> {{quotation.reference}}</h2>
+      <p> {{quotation.customerName}}</p>
+      <ion-note item-end>
+        <ion-icon name="md-trash" color="danger" col-5 (click)="delete(quotation.id, i)"></ion-icon>
+        <ion-icon name="ios-create-outline" color="primary" col-5 (click)="edit(quotation)"></ion-icon>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="quotations.length < 1 && callDone" class="empty-state">
+    {{'general.sorry-no' | translate}}{{'quotations.title' | translate}}
+  </div>
+  <ion-infinite-scroll threshold="100px"(ionInfinite)="next($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<!-- <ion-footer>
+  <ion-row padding-horizontal>
+    <ion-col>
+      <button ion-button block round color="dark" text-uppercase mode="md" (click)="add()">{{"quotations.new" | translate}}</button>
+    </ion-col>
+  </ion-row>
+</ion-footer> -->

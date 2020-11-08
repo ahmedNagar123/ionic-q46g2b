@@ -1,0 +1,50 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding class="no-margin-content bg">
+  <ion-grid class="height-100">
+    <ion-row justify-content-center align-items-center class="height-100">
+      <ion-col align-self-center text-center>
+        <img src="assets/imgs/logo.png" class="width-40" />
+        <ion-item margin-bottom class="input-item">
+          <ion-input type="text" [(ngModel)]="email" placeholder="{{'login.username' | translate}}"></ion-input>
+          <ion-icon name="ios-mail-outline" item-right color="secondary"></ion-icon>
+        </ion-item>
+        <ion-item margin-bottom class="input-item">
+          <ion-input type="password" [(ngModel)]="password" placeholder="{{'login.password' | translate}}"></ion-input>
+          <ion-icon name="ios-lock-outline" item-right color="secondary"></ion-icon>
+        </ion-item>
+        <ion-item no-padding no-lines padding-bottom class="forget-item">
+          <ion-label color="primary">{{'login.remember' | translate}}</ion-label>
+          <ion-checkbox color="light" [(ngModel)]="rememberMe" (ionChange)="rememberMeChanged()"></ion-checkbox>
+        </ion-item>
+        <ion-item no-padding no-lines padding-bottom class="forget-item">
+          <ion-label end text-right no-margin color="primary" (click)="forgetPassword()">{{'login.forget' | translate}}</ion-label>
+        </ion-item>
+        <button ion-button block text-capitalize color="dark" mode="md" margin-top (click)="doLogin()">{{'login.signin' | translate}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <button ion-button padding margin (click)="doLogin()">{{"login.title" | translate}}</button>
+
+  <button ion-button block round large color="dark" text-uppercase mode="md" (click)="doLogin()">{{"login.title" | translate}}</button>
+
+  <button ion-button block round large outline color="dark" text-uppercase mode="md" (click)="doLogin()">{{"login.title" | translate}}</button>
+
+  <ion-input type="text" placeholder="no label" margin-bottom></ion-input>
+
+  <ion-textarea type="text" placeholder="no label" rows="5" margin-bottom></ion-textarea>
+
+  <ion-item class="ddl" no-padding>
+    <ion-label color="primary">Gender</ion-label>
+    <ion-select [(ngModel)]="gender" color="primary">
+      <ion-option value="f">Female</ion-option>
+      <ion-option value="m">Male</ion-option>
+    </ion-select>
+  </ion-item> -->
+
+</ion-content>

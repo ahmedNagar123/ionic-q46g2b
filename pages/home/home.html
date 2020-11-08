@@ -1,17 +1,30 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header headerTxt="home.title" hideHomeBtn="true"></header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-grid class="height-100" margin-top>
+    <ion-row class="height-100" justify-content-center>
+      <ion-col text-center col-12 col-md-8 col-lg-4>
+        <img src="assets/imgs/logo.png" class="width-30" margin-bottom />
+
+        <button ion-button block round color="dark" text-uppercase mode="md" (click)="workplace()">{{"home.workplace" | translate}}</button>
+
+        <button ion-button block round outline color="dark" text-uppercase mode="md" (click)="reports()">{{"home.reports" | translate}}</button>
+
+        <button ion-button block round color="dark" text-uppercase mode="md" (click)="options()">{{"home.options" | translate}}</button>
+
+        <button ion-button block round outline color="dark" text-uppercase mode="md" (click)="financial()">{{"home.fin" | translate}}</button>
+
+        <button ion-button block round color="dark" text-uppercase mode="md" (click)="setupMenu()">{{"home.setup" | translate}}</button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

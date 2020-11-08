@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ProductsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showNavLogo="true" navBarTitle="opportunities.list"></header>
+
+<ion-content padding class="three-header-content">
+  <ion-list *ngIf="opportunities.length > 0" no-lines>
+    <ion-item *ngFor="let item of opportunities; let i = index" class="items-class" (click)="edit(item)">
+      <h2>{{item.description}}</h2>
+      <!-- <p> {{'opportunities.customer' | translate}}: {{item.customerName}}</p> -->
+      <p> {{'opportunities.origin' | translate}}: {{getOrigin(item.origin) | translate}}</p>
+      <p> {{'opportunities.date' | translate}}: {{getDate(item.date)}}</p>
+      <ion-note item-end>
+        <ion-icon name="eye" color="primary" col-5></ion-icon>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="opportunities.length < 1 && callDone" class="empty-state">
+    {{'general.sorry-no' | translate}}{{'opportunities.title' | translate}}
+  </div>
+  <ion-infinite-scroll threshold="100px"(ionInfinite)="next($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

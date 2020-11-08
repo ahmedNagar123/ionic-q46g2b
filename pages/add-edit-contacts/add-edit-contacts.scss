@@ -1,0 +1,34 @@
+page-add-edit-contacts {
+    .checkbox
+    {
+        position: absolute !important;
+        right: 0;
+        margin: 0 7px !important;
+    }
+    .upload
+    {
+        width: 100%;
+        opacity: 0;
+        display: block;
+        z-index: 10;
+        margin-bottom: -48px !important;
+        height: 48px;
+    }
+    .attach-mask
+    {
+        pointer-events: none;
+    }
+    #attach-container
+    {
+        overflow: scroll;
+    }
+    .content
+    {
+        margin: 0px !important;
+        background: rgba(0,0,0,.8);
+    }
+    .item
+    {
+        background: transparent !important;
+    }
+}

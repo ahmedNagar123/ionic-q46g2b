@@ -1,0 +1,34 @@
+<!-- Generated template for the HeaderComponent component -->
+
+<ion-header no-border>
+  <ion-toolbar color="primary" *ngIf="!hideToolBar">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="toggleMenu()">
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-searchbar [(ngModel)]="searchValue" debounce="1000" (ionInput)="onInput($event)" *ngIf="showSearchBar">
+    </ion-searchbar>
+    <img *ngIf="showToolLogo" src="assets/imgs/white-logo.png" class="width-30" />
+    <ion-title *ngIf="toolBarTitle" text-uppercase>
+      {{toolBarTitle | translate}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="home()" *ngIf="!hideHomeBtn">
+          <ion-icon name="home" ></ion-icon>
+      </button>
+      <button ion-button (click)="next()" *ngIf="nextButtonTxt">
+          {{nextButtonTxt | translate}}
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-navbar *ngIf="!hideNavBar" [ngClass]="(showNavLogo && navBarTitle)?'nav-height':''">
+    <ion-title>
+      <ng-container *ngIf="showNavLogo">
+        <img src="assets/imgs/logo.png" class="width-40" padding-top padding-horizontal />
+        <br />
+      </ng-container>
+      <span *ngIf="navBarTitle" text-uppercase>{{navBarTitle | translate}}</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header> 

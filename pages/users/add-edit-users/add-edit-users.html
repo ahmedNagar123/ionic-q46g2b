@@ -1,0 +1,35 @@
+<!--
+  Generated template for the AddEditUsersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showToolLogo="true" [navBarTitle]="(mode == 'add')?'users.new':title"></header>
+
+<ion-content class="two-header-content">
+  <div text-center padding>
+    <ion-item margin-bottom class="input-item">
+      <ion-input type="text" [(ngModel)]="fullname" placeholder="{{'users.full-name' | translate}}"></ion-input>
+    </ion-item>
+    <ion-item class="ddl" no-padding margin-bottom>
+      <ion-select [(ngModel)]="selectedRole" color="primary" placeholder="{{'users.role' | translate}}">
+        <ion-option *ngFor="let item of roles; let i = index" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item margin-bottom class="input-item">
+      <ion-input type="email" [(ngModel)]="email" placeholder="{{'users.email' | translate}}"></ion-input>
+    </ion-item>
+    <!-- <ion-item margin-bottom class="input-item">
+      <ion-input type="password" [(ngModel)]="password" placeholder="{{'users.password' | translate}}"></ion-input>
+    </ion-item> -->
+    <ion-item margin-bottom class="input-item">
+      <ion-input type="text" [(ngModel)]="signature" placeholder="{{'users.signature' | translate}}"></ion-input>
+    </ion-item>
+    <ion-item margin-bottom class="input-item">
+      <ion-checkbox [(ngModel)]="locked"></ion-checkbox>
+      <ion-label color="secondary">{{'users.lock' | translate}}</ion-label>
+    </ion-item>
+    <button ion-button block round text-capitalize color="dark" mode="md" margin-top (click)="save()">{{'general.save' | translate}}</button>
+    <button ion-button block outline round text-capitalize color="dark" mode="md" margin-top (click)="clear()">{{'general.clear' | translate}}</button>
+  </div>
+</ion-content>

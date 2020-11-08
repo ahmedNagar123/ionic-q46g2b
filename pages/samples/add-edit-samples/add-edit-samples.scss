@@ -1,0 +1,27 @@
+page-add-edit-samples {
+    .upload
+    {
+        width: 100%;
+        opacity: 0;
+        display: block;
+        z-index: 10;
+        margin-bottom: -48px !important;
+        height: 48px;
+    }
+    .attach-mask
+    {
+        pointer-events: none;
+    }
+    #attach-container
+    {
+        overflow: scroll;
+    }
+    .scroll-content
+    {
+        margin-bottom: 90px;
+    }
+    h2
+    {
+        white-space: normal;
+    }
+}

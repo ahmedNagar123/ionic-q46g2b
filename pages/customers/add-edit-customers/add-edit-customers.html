@@ -1,0 +1,94 @@
+<!--
+  Generated template for the AddEditCustomersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showToolLogo="true" [navBarTitle]="(mode == 'add')?'customers.new':title"></header>
+
+<ion-content class="two-header-content">
+  <div *ngIf="mode == 'edit'" padding-top>
+    <ion-segment [(ngModel)]="selectedOption" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="details" text-uppercase>
+        {{'customers.details' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="products" text-uppercase>
+        {{'products.title' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="contacts" text-uppercase>
+        {{'customers.contacts' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="selectedOption">
+    <div text-center *ngSwitchCase="'details'" padding>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="name" placeholder="{{'suppliers.name' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="email" [(ngModel)]="email" placeholder="{{'suppliers.email' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="phone" placeholder="{{'suppliers.phone' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-select [(ngModel)]="selectedCountry" color="primary" placeholder="{{'suppliers.country' | translate}}">
+          <ion-option *ngFor="let item of countries; let i = index" [value]="item">{{item.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="address1" placeholder="{{'suppliers.address1' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="address2" placeholder="{{'suppliers.address2' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="fax" placeholder="{{'suppliers.fax' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="website" placeholder="{{'suppliers.website' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-textarea type="text" [(ngModel)]="description" placeholder="{{'suppliers.description' | translate}}" rows="5"></ion-textarea>
+      </ion-item>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-bottom (click)="save()">{{'general.save' | translate}}</button>
+      <button ion-button block outline round text-capitalize color="dark" mode="md" margin-bottom (click)="clear()" *ngIf="mode == 'add'">{{'general.clear' | translate}}</button>
+    </div>
+    <div text-center *ngSwitchCase="'products'" padding>
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-label color="secondary">{{'products.list' | translate}}</ion-label>
+        <ionic-selectable item-content [(ngModel)]="selectedProducts" [items]="products" itemValueField="id" itemTextField="name"
+          [canSearch]="true" [isMultiple]="false">
+        </ionic-selectable>
+      </ion-item>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-bottom (click)="saveProd()">{{'general.assign' | translate}}</button>
+      <button ion-button block outline round text-capitalize color="dark" mode="md" margin-bottom (click)="clearProd()">{{'general.clear' | translate}}</button>
+      <ion-list margin-top>
+        <ng-container *ngFor="let product of customerProducts; let i = index">
+          <ion-item class="items-class" *ngIf="product.status == 1">
+            <h2> {{product.productName}}</h2>
+            <p> {{'products.cas' | translate}}: {{product.casNumber}}</p>
+            <p> {{'products.hs' | translate}}: {{product.hsCode}}</p>
+            <ion-note item-end>
+              <ion-icon name="md-trash" color="danger" col-5 (click)="deleteProduct(i)"></ion-icon>
+            </ion-note>
+          </ion-item>
+        </ng-container>
+      </ion-list>
+    </div>
+    <div text-center *ngSwitchCase="'contacts'" padding>
+      <ion-list margin-top>
+        <ion-item *ngFor="let item of customerContacts; let i = index" class="items-class">
+          <h2> {{item.name}}</h2>
+          <p> {{'customers.phone' | translate}} {{item.mobile}}</p>
+          <p> {{'customers.email' | translate}} {{item.email}}</p>
+          <ion-note item-end>
+            <ion-icon name="md-trash" color="danger" col-5 (click)="deleteContact(i)"></ion-icon>
+            <ion-icon name="ios-create-outline" color="primary" col-5 (click)="editContact(item)"></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-bottom (click)="createContact()">{{'customers.new-contact' | translate}}</button>
+    </div>
+  </div>
+</ion-content>

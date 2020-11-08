@@ -1,0 +1,27 @@
+page-add-edit-shipments {
+    .scroll-content
+    {
+        margin-bottom: 90px;
+    }
+    .upload
+    {
+        width: 100%;
+        opacity: 0;
+        display: block;
+        z-index: 10;
+        margin-bottom: -48px !important;
+        height: 48px;
+    }
+    .attach-mask
+    {
+        pointer-events: none;
+    }
+    #attach-container
+    {
+        overflow: scroll;
+    }
+    h2
+    {
+        white-space: normal;
+    }
+}

@@ -1,0 +1,27 @@
+.toolbar-content
+{
+    text-align: center;
+}
+
+.toolbar-title
+{
+    color: color($colors, primary);
+}
+
+.toolbar-background
+{
+    background: white;
+}
+
+.nav-height
+{
+    height: 88px;
+}
+
+ion-navbar
+{
+    .title
+    {
+        padding: 0 30px !important;
+    }
+}

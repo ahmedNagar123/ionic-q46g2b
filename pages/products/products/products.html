@@ -1,0 +1,119 @@
+<!--
+  Generated template for the ProductsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showNavLogo="true" [navBarTitle]="title"></header>
+
+<ion-content class="two-header-content">
+  <div class="margin-top-50">
+    <ion-segment [(ngModel)]="selectedOption" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="userDetails" text-uppercase>
+        {{'users.details' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="contacts" text-uppercase>
+        {{'contacts.title' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="products" text-uppercase>
+        {{'products.title' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="attachments" text-uppercase>
+        {{'products.attach' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="selectedOption">
+    <div text-center padding *ngSwitchCase="'userDetails'" class="scroll">
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.name' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.name}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.address1' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.addressLine1}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.address2' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.addressLine2}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.country' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.countryName}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.contact' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.contactName}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.phone' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.phone}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.fax' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.fax}}</ion-label>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-label color="grey">{{'suppliers.website' | translate}}</ion-label>
+        <ion-label color="grey">{{userData.website}}</ion-label>
+      </ion-item>
+    </div>
+    <div text-center padding *ngSwitchCase="'products'" class="scroll">
+      <ion-item class="ddl" no-padding margin-bottom>
+        <ion-label color="secondary">{{'products.list' | translate}}</ion-label>
+        <ionic-selectable item-content [(ngModel)]="selectedProducts" [items]="allProducts" itemValueField="id" itemTextField="name"
+          [canSearch]="true" [isMultiple]="false">
+        </ionic-selectable>
+        <ion-note item-end style="z-index:100">
+          <ion-icon name="add" color="primary" col-8 (click)="assignProduct()"></ion-icon>
+        </ion-note>
+      </ion-item>
+      <ion-list *ngIf="products.length > 0" no-lines>
+        <ion-item *ngFor="let product of products; let i = index" class="items-class">
+          <h2 (click)="viewReport(product)"> {{product.productName}}</h2>
+          <p (click)="viewReport(product)"> {{'products.cas' | translate}}: {{product.casNumber}}</p>
+          <p (click)="viewReport(product)"> {{'products.hs' | translate}}: {{product.hsCode}}</p>
+          <ion-note item-end>
+            <ion-icon name="md-trash" color="danger" col-5 (click)="delete(product.id, i)"></ion-icon>
+            <ion-icon name="eye" color="primary" col-5 (click)="viewReport(product)"></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="products.length < 1 && callDone" class="empty-state">
+        {{'general.sorry-no' | translate}}{{'products.title' | translate}}
+      </div>
+    </div>
+    <div text-center padding *ngSwitchCase="'contacts'" class="scroll">
+      <ion-list *ngIf="contacts.length > 0" no-lines>
+        <ion-item *ngFor="let contact of contacts; let i = index" class="items-class" (click)="getContactFileName(contact)">
+          <h2> {{contact.nameWithTitle}}</h2>
+          <p> {{'contacts.mobile' | translate}}: {{contact.mobile}}</p>
+          <p> {{'contacts.job' | translate}}: {{contact.position}}</p>
+          <ion-note item-end>
+            <ion-icon name="ios-cloud-download" color="primary" col-5></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="contacts.length < 1 && callDone" class="empty-state">
+        {{'general.sorry-no' | translate}}{{'contacts.list' | translate}}
+      </div>
+    </div>
+    <div text-center padding *ngSwitchCase="'attachments'" class="scroll">
+      <ion-list *ngIf="attachments.length > 0" no-lines>
+        <ion-item *ngFor="let attach of attachments; let i = index" class="items-class" (click)="downloadAttach(attach)">
+          <h2> {{attach.title}}</h2>
+          <ion-note item-end>
+            <ion-icon name="ios-cloud-download" color="primary" col-5></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <div *ngIf="attachments.length < 1 && callDone" class="empty-state">
+        {{'general.sorry-no' | translate}}{{'products.attach-list' | translate}}
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll threshold="100px"(ionInfinite)="next($event)" *ngIf="selectedOption != 'userDetails'">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

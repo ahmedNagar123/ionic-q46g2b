@@ -1,1 +1,38 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<!-- [enabled]="globals.isUserLoggedIn"  -->
+<ion-menu [content]="content" type="push" [swipeEnabled]="globals.isUserLoggedIn" [enabled]="globals.isUserLoggedIn">
+  <ion-content class="no-margin-content menu-content">
+    <!-- <ion-buttons right>
+      <button ion-button icon-only menuClose clear>
+        <ion-icon name="ios-close-circle-outline" color="light"></ion-icon>
+    </button>
+    </ion-buttons> -->
+    <div padding text-center class="logo-container">
+      <ion-icon name="md-person"></ion-icon>
+    </div>
+    <div text-center>
+       <button ion-button icon-right clear small block color="light" menuClose (click)="openPage('ProfilePage', false)">
+        {{globals.userInfo.name}}
+      </button>
+      <button ion-button icon-right clear small block color="light" menuClose (click)="openPage('ChangePasswordPage', false)">
+        {{'change-pass.title' | translate}}
+        <ion-icon name="ios-lock-outline"></ion-icon>
+      </button>
+      <button ion-button icon-right clear small block color="light" menuClose (click)="logout()">
+         {{'general.logout' | translate}}
+        <ion-icon name="ios-log-out-outline"></ion-icon>
+      </button>
+    </div>
+    <ion-list no-lines>
+      <ng-container *ngFor="let p of pages">
+        <button menuClose ion-item color="light" (click)="openPage(p.component, true)" *ngIf="checkShowHidePage(p)">
+       <ion-icon name="{{p.icon}}"></ion-icon>
+        {{p.title | translate}}
+      </button>
+      </ng-container>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

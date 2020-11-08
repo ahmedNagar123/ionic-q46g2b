@@ -1,0 +1,30 @@
+<!--
+  Generated template for the SamplesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showNavLogo="true" navBarTitle="samples.list"></header>
+
+<ion-content padding class="three-header-content">
+  <ion-list *ngIf="samples.length > 0" no-lines>
+    <ion-item *ngFor="let sample of samples; let i = index" class="items-class">
+      <h2 (click)="viewReport(sample)"> {{sample.name}}</h2>
+      <p (click)="viewReport(sample)"> {{sample.productName}}</p>
+      <p (click)="viewReport(sample)"> {{sample.supplierName}}</p>
+      <p (click)="viewReport(sample)">{{sample.manufacture}}</p>
+      <p (click)="viewReport(sample)"> {{sample.customerName}}</p>
+      <ion-note item-end>
+        <ion-icon name="eye" color="primary" col-5 (click)="view(sample)"></ion-icon>
+        <!-- <ion-icon name="ios-create-outline" color="primary" col-5 (click)="viewReport(sample)"></ion-icon> -->
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="samples.length < 1 && callDone" class="empty-state">
+    {{'general.sorry-no' | translate}}{{'samples.title' | translate}}
+  </div>
+  <ion-infinite-scroll threshold="100px"(ionInfinite)="next($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

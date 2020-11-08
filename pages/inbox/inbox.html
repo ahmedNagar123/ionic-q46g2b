@@ -1,0 +1,26 @@
+<!--
+  Generated template for the InboxPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header navBarTitle="messages.inbox" showNavLogo='true'></header>
+
+<ion-content class="two-header-content">
+  <ion-list *ngIf="messagesArr.length > 0" no-lines padding class="margin-top-50">
+    <ion-item *ngFor="let message of messagesArr; let i = index" class="items-class">
+      <h2> {{message.title}}</h2>
+      <p>{{getDate(message.date)}}</p>
+      <ion-note item-end>
+        <ion-icon name="ios-send" color="primary" col-5 (click)="reply(product)"></ion-icon>
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="messagesArr.length < 1 && callDone" class="empty-state" padding>
+    {{'general.sorry-no' | translate}}{{'messages.inbox' | translate}}
+  </div>
+  <ion-infinite-scroll threshold="100px"(ionInfinite)="next($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

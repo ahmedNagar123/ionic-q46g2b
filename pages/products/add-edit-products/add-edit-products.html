@@ -1,0 +1,64 @@
+<!--
+  Generated template for the AddEditProductsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<header showToolLogo="true" [navBarTitle]="(mode == 'add')?'products.new':title"></header>
+
+<ion-content class="two-header-content">
+  <div *ngIf="mode == 'edit'" padding-top>
+    <ion-segment [(ngModel)]="selectedOption" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="details" text-uppercase>
+        {{'products.details' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="attachments" text-uppercase>
+        {{'products.attach' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="selectedOption">
+    <div text-center *ngSwitchCase="'details'" padding>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="name" placeholder="{{'products.prod-name' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="cas" placeholder="{{'products.cas' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="hs" placeholder="{{'products.hs' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-textarea type="text" [(ngModel)]="description" placeholder="{{'products.description' | translate}}" rows="5"></ion-textarea>
+      </ion-item>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-top (click)="save()">{{'general.save' | translate}}</button>
+      <button ion-button block outline round text-capitalize color="dark" mode="md" margin-top (click)="clear()" *ngIf="mode == 'add'">{{'general.clear' | translate}}</button>
+    </div>
+    <div text-center *ngSwitchCase="'attachments'" padding id="attach-container">
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" [(ngModel)]="attachTitle" placeholder="{{'products.att-title' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item upload">
+        <ion-input type="file" id="fileInput" #fileInput></ion-input>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-input type="text" class="attach-mask" [(ngModel)]="attachName" placeholder="{{'products.attach' | translate}}"></ion-input>
+        <ion-icon name="md-cloud-upload" item-right color="secondary"></ion-icon>
+      </ion-item>
+      <ion-item margin-bottom class="input-item">
+        <ion-textarea type="text" [(ngModel)]="notes" placeholder="{{'products.notes' | translate}}" rows="5"></ion-textarea>
+      </ion-item>
+      <ion-list>
+        <ion-item *ngFor="let item of attachmentsArr; let i = index" class="items-class">
+          <h2>{{item.name}}</h2>
+          <p> {{item.title}}</p>
+          <p> {{item.notes}}</p>
+          <ion-note item-end>
+            <ion-icon name="md-trash" color="danger" col-5 (click)="deleteFile(i)"></ion-icon>
+          </ion-note>
+        </ion-item>
+      </ion-list>
+      <button ion-button block round text-capitalize color="dark" mode="md" margin-top (click)="saveAttach()">{{'general.save' | translate}}</button>
+    </div>
+  </div>
+</ion-content>
